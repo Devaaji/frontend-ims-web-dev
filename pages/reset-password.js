@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box,
   Button,
@@ -13,7 +14,6 @@ import {
   useBoolean,
 } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
-import React from 'react';
 import { FaUserLock, FaEnvelope } from 'react-icons/fa';
 
 const ResetPasswordPage = () => {

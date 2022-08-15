@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect } from 'react';
-import { useBreakpoint, useDisclosure } from '@chakra-ui/react';
+import { useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 
 const DashboardContext = createContext();
 
@@ -15,7 +15,7 @@ const DashboardProvider = ({ children }) => {
     onToggle: onMobileSidebarOpen,
     onClose: onMobileSidebarClose,
   } = useDisclosure({ defaultIsOpen: false });
-  const isDesktop = useBreakpoint({ base: false, md: true });
+  const isDesktop = useBreakpointValue({ base: false, md: true });
 
   function onToggle() {
     if (isDesktop) return onDesktopSidebarOpen();
@@ -23,7 +23,7 @@ const DashboardProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    if (isDesktop) return onMobileSidebarClose();
+    if (isDesktop) onMobileSidebarClose();
   }, [isDesktop]);
   return (
     <DashboardContext.Provider

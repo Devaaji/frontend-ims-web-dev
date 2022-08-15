@@ -1,8 +1,13 @@
-import { Box, Center, Flex, Link, Text } from '@chakra-ui/react';
+import { Box, Center, Flex } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useDashboard } from '../../../context/dashboard/DashboardProvider';
 import PindadLogo from '../../core/pindadlogo';
 import DashboardSidebarItem from '../DashboardSidebarItem';
+
+const DynamicSidebarMobileDrawer = dynamic(() =>
+  import('../DashboardSidebarMobile')
+);
 
 const DashboardSidebar = ({ items }) => {
   const { pathname } = useRouter();
@@ -13,8 +18,8 @@ const DashboardSidebar = ({ items }) => {
       as="aside"
       bg="white"
       minW={isDesktopSidebarOpened ? 'xs' : '0'}
-      w={isDesktopSidebarOpened ? 'xs' : '0'}
-      d={{ base: 'none', md: 'block' }}
+      width={isDesktopSidebarOpened ? 'xs' : '0'}
+      display={{ base: 'none', md: 'block' }}
       transitionProperty="min-width, width"
       transitionDuration="ultra-slow"
       borderRightWidth={isDesktopSidebarOpened ? '1px' : undefined}
@@ -30,6 +35,7 @@ const DashboardSidebar = ({ items }) => {
           ))}
         </Flex>
       </Box>
+      <DynamicSidebarMobileDrawer items={items} />
     </Box>
   );
 };

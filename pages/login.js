@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box,
   Button,
@@ -7,7 +8,6 @@ import {
   FormLabel,
   Heading,
   IconButton,
-  Image,
   Input,
   InputGroup,
   InputRightElement,
@@ -18,10 +18,8 @@ import {
 } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
 import NextLink from 'next/link';
-import React from 'react';
-import LogoPindad from '../assets/images/logo.png';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
-import NextImage from '../components/core';
+import PindadLogo from '../components/core/pindadlogo';
 
 const LoginPage = () => {
   const { isOpen: isPasswordOpen, onToggle: onPasswordToggle } =
@@ -57,9 +55,7 @@ const LoginPage = () => {
           >
             <Stack spacing="6">
               <Center>
-                <Box w="160px">
-                  <NextImage src={LogoPindad} alt="Logo Pindad" />
-                </Box>
+                <PindadLogo multiplySize={1.5} />
               </Center>
               <Box>
                 <Text fontSize="2xl" fontWeight="semibold">

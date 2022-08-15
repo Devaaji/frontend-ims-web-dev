@@ -1,7 +1,8 @@
 import React from 'react';
-import { Avatar, Box, HStack, IconButton, Stack } from '@chakra-ui/react';
+import { Box, HStack, IconButton, Stack } from '@chakra-ui/react';
 import { FiMenu } from 'react-icons/fi';
 import { useDashboard } from '../../../context/dashboard/DashboardProvider';
+import DashboardUserNavbar from '../DashboardUserNavbar';
 
 const DashboardNavbar = () => {
   const { isDesktopSidebarOpened, onSidebarToggle } = useDashboard();
@@ -24,13 +25,14 @@ const DashboardNavbar = () => {
       <HStack alignItems="center" flexGrow={1}>
         <IconButton
           icon={<FiMenu />}
-          variant="solid-alt"
+          variant="ghost"
           onClick={onSidebarToggle}
           aria-label="Menu"
         />
+        tes
       </HStack>
       <Box position="relative">
-        <Avatar src="" name="Deva Aji Saputra" />
+        <DashboardUserNavbar />
       </Box>
     </Stack>
   );

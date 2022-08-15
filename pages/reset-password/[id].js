@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Box,
   Button,
@@ -17,7 +18,6 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
-import React from 'react';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { FaUserLock } from 'react-icons/fa';
 

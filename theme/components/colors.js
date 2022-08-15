@@ -1,5 +1,7 @@
 const colors = {
   'ims-primary': '#010080',
+  'ims-button-primary': '#E6E6F8',
+  'ims-hover-primary': '#CFCEF6',
   'button-hover': '#282795',
   'ims-secondary': '#D3AF37',
   'ims-red': '#CA0000',

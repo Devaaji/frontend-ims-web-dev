@@ -43,7 +43,6 @@ const ResetPasswordPage = () => {
         flexDirection="column"
         w="100wh"
         h="100vh"
-        border={'4px solid black'}
         justifyContent="center"
         align="center"
       >

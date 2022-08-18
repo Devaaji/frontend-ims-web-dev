@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Badge,
   Box,
   Collapse,
   Flex,
@@ -28,7 +27,7 @@ const DashboardSidebarItem = ({ item, pathname }) => {
           borderLeftWidth={4}
           p="3"
           bg={isActive ? 'ims-button-primary' : undefined}
-          color={isActive ? 'ims-rimary' : 'black'}
+          color={isActive ? 'ims-primary' : 'black'}
           onClick={onToggle}
           cursor="pointer"
           transitionProperty="common"
@@ -37,20 +36,7 @@ const DashboardSidebarItem = ({ item, pathname }) => {
           <Box ml="2" mr="4" color={isActive ? 'ims-primary' : 'black'}>
             <Icon as={item.icon} />
           </Box>
-          <Text fontSize="md">
-            {item.name}
-            {item.badge && (
-              <Badge
-                as="sup"
-                ml="1"
-                colorScheme="red"
-                display="inline"
-                rounded="lg"
-              >
-                {item.badge}
-              </Badge>
-            )}
-          </Text>
+          <Text fontSize="md">{item.name}</Text>
           <Box ml="auto">
             {isOpen ? <ViChevronBack /> : <ViChevronForward />}
           </Box>
@@ -63,24 +49,13 @@ const DashboardSidebarItem = ({ item, pathname }) => {
                 display="block"
                 p="2"
                 bg={isActive ? 'ims-button-primary' : undefined}
-                color={subItem.path === pathname ? 'ims-primary' : 'black'}
+                color={subItem.path === pathname ? 'ims-secondary' : 'black'}
                 pl="14"
                 transitionProperty="common"
                 transitionDuration="normal"
                 _hover={{ bg: 'ims-hover-primary' }}
               >
                 {subItem.name}
-                {subItem.badge && (
-                  <Badge
-                    as="sup"
-                    ml="1"
-                    colorScheme="red"
-                    display="inline"
-                    rounded="lg"
-                  >
-                    {subItem.badge}
-                  </Badge>
-                )}
               </Text>
             </NextLink>
           ))}
@@ -106,20 +81,7 @@ const DashboardSidebarItem = ({ item, pathname }) => {
           <Box ml="2" mr="4" color={isActive ? 'ims-primary' : 'black'}>
             <Icon as={item.icon} />
           </Box>
-          <Text fontSize="md">
-            {item.name}
-            {item.badge && (
-              <Badge
-                as="sup"
-                ml="1"
-                colorScheme="red"
-                display="inline"
-                rounded="lg"
-              >
-                {item.badge}
-              </Badge>
-            )}
-          </Text>
+          <Text fontSize="md">{item.name}</Text>
         </Flex>
       </NextLink>
     </React.Fragment>

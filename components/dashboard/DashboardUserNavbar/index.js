@@ -24,7 +24,11 @@ const DashboardUserNavbar = () => {
     <>
       <Menu placement="bottom-end" isLazy>
         <MenuButton aria-label="Options" bg="transparent" variant="ghost">
-          <Avatar src="" name="Deva Aji Saputra" />
+          <Avatar
+            src=""
+            name="Deva Aji Saputra"
+            size={{ base: 'sm', md: 'md' }}
+          />
         </MenuButton>
         <Portal>
           <MenuList borderColor="vocasia-neutral-8" color="black">

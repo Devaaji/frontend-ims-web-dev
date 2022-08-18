@@ -10,13 +10,14 @@ import {
 } from '@tanstack/react-table';
 import {
   Box,
+  Button,
   ButtonGroup,
   Flex,
   HStack,
+  Icon,
   IconButton,
   Input,
   InputGroup,
-  InputRightElement,
   Select,
   Spacer,
   Stack,
@@ -39,10 +40,12 @@ import {
 import Head from 'next/head';
 import { FiSearch } from 'react-icons/fi';
 import CreateDashboardCheckItems from '../components/create/CreateDashboardCheckItems';
-import { Person } from '../utils/Testing/newPerson';
+// import { Person } from '../utils/Testing/newPerson';
+import { makeData } from '../utils/Testing/makeData';
 
 const CheckItems = () => {
-  const data = Person;
+  // const data = Person;
+  const [data, setData] = useState(() => makeData(20));
   const [sorting, setSorting] = useState([]);
 
   const columns = useMemo(
@@ -104,6 +107,12 @@ const CheckItems = () => {
     []
   );
 
+  const [opsi, setOpsi] = useState('Search..');
+
+  const handleOpsi = (e) => {
+    setOpsi(e.target.value);
+  };
+
   const table = useReactTable({
     data,
     columns,
@@ -114,7 +123,7 @@ const CheckItems = () => {
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    debugTable: true,
+    debugTable: false,
   });
   return (
     <VStack align="stretch" py="6" px="4" spacing="6">
@@ -140,17 +149,39 @@ const CheckItems = () => {
         </Select>
         <Text>Entries</Text>
         <Spacer />
-        <InputGroup maxW="xs" as="form">
-          <InputRightElement pointerEvents="none">
-            <FiSearch />
-          </InputRightElement>
-          <Input
-            type="text"
-            placeholder="Search.."
-            variant="outline"
-            shadow="none"
-          />
-        </InputGroup>
+        <HStack>
+          <Box border="1px solid #010080" bg="white" rounded="md" p="0.5">
+            <InputGroup maxW="xs" as="form">
+              <Input
+                type="text"
+                placeholder={`Pilih ${opsi}`}
+                shadow="none"
+                variant="none"
+              />
+              <Select
+                color="ims-primary"
+                rounded="none"
+                variant="none"
+                onChange={handleOpsi}
+                borderLeft="1px solid gray"
+              >
+                <option value="Option 1">Option 1</option>
+                <option value="Option 2">Option 2</option>
+                <option value="Option 3">Option 3</option>
+              </Select>
+              <Button
+                align="center"
+                p="2"
+                rounded="md"
+                color="white"
+                bg="ims-primary"
+                _hover={{ bg: 'button-hover' }}
+              >
+                <Icon as={FiSearch} w={10} h={5} />
+              </Button>
+            </InputGroup>
+          </Box>
+        </HStack>
       </HStack>
       <TableContainer
         bg="white"
@@ -206,7 +237,6 @@ const CheckItems = () => {
             {table.getRowModel().rows.map((row) => (
               <Tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  //Disini notif herdrayed
                   <Td key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </Td>

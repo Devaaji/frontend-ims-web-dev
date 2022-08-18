@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, HStack, IconButton, Stack } from '@chakra-ui/react';
+import { Box, Flex, HStack, IconButton, Stack } from '@chakra-ui/react';
 import { FiMenu } from 'react-icons/fi';
 import { useDashboard } from '../../../context/dashboard/DashboardProvider';
 import DashboardUserNavbar from '../DashboardUserNavbar';
@@ -8,7 +8,7 @@ const DashboardNavbar = () => {
   const { isDesktopSidebarOpened, onSidebarToggle } = useDashboard();
   return (
     <Stack
-      p="6"
+      p="4"
       bg="white"
       borderBottomWidth="1px"
       alignItems={{
@@ -22,18 +22,24 @@ const DashboardNavbar = () => {
         lg: 'row',
       }}
     >
-      <HStack alignItems="center" flexGrow={1}>
-        <IconButton
-          icon={<FiMenu />}
-          variant="ghost"
-          onClick={onSidebarToggle}
-          aria-label="Menu"
-        />
-        tes
-      </HStack>
-      <Box position="relative">
-        <DashboardUserNavbar />
-      </Box>
+      <Flex
+        w="full"
+        justifyContent="space-between"
+        alignItems="center"
+        flexDirection="row"
+      >
+        <Box>
+          <IconButton
+            icon={<FiMenu />}
+            variant="ghost"
+            onClick={onSidebarToggle}
+            aria-label="Menu"
+          />
+        </Box>
+        <Box>
+          <DashboardUserNavbar />
+        </Box>
+      </Flex>
     </Stack>
   );
 };

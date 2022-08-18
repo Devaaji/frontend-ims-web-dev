@@ -63,7 +63,6 @@ const DashboardUserNavbar = () => {
               </MenuItem>
             </NextLink>
             <MenuItem
-              bg="gray.100"
               color="ims-red"
               icon={<FiLogOut color="ims-red" />}
               onClick={handleLogout}

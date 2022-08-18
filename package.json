@@ -13,12 +13,16 @@
     "@chakra-ui/react": "^2.2.6",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "@faker-js/faker": "^7.4.0",
     "@fontsource/open-sans": "^4.5.11",
+    "@tanstack/react-table": "^8.5.11",
     "framer-motion": "^6.5.1",
     "next": "12.2.4",
     "next-seo": "^5.5.0",
+    "nextjs-progressbar": "0.0.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.34.2",
     "react-icons": "^4.4.0"
   },
   "devDependencies": {

@@ -29,7 +29,6 @@ import {
 } from '@chakra-ui/react';
 import Head from 'next/head';
 import CreateDashboardCheckItems from '../components/create/CreateDashboardCheckItems';
-import { FiSearch } from 'react-icons/fi';
 import {
   CgChevronLeft,
   CgChevronRight,
@@ -38,17 +37,11 @@ import {
 } from 'react-icons/cg';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import DashboardPagination from '../components/dashboard/DashboardPagination';
+import FilterSearchCheckItem from '../components/filter/FilterSearchCheckItem';
 
 const ToolsBookPage = () => {
   //ini pemanggilan data setelah di fetching
   const { data: newDataToolsBook } = useRemoteToolsBook();
-
-  const [opsi, setOpsi] = useState('Search..');
-
-  const handleOpsi = (e) => {
-    setOpsi(e.target.value);
-  };
-
   const columns = useMemo(
     () => [
       {
@@ -117,68 +110,14 @@ const ToolsBookPage = () => {
             <title>Tools Book | IMS</title>
           </Head>
           <CreateDashboardCheckItems />
-          <HStack>
-            <Text>Show</Text>
-            <Select
-              variant="outline"
-              colorScheme="blue"
-              bg="white"
-              w="max"
-              value={pageSize}
-              onChange={(e) => {
-                setPageSize(Number(e.target.value));
-              }}
-            >
-              {[10, 20, 30, 40, 50].map((pageSize) => (
-                <option key={pageSize} value={pageSize}>
-                  {pageSize}
-                </option>
-              ))}
-            </Select>
-            <Text>Entries</Text>
-            <Spacer />
-            <HStack>
-              <Box border="1px solid #010080" bg="white" rounded="md" p="0.5">
-                <InputGroup maxW="xs" as="form">
-                  <Input
-                    type="text"
-                    placeholder={`Pilih ${opsi}`}
-                    shadow="none"
-                    variant="none"
-                  />
-                  <Select
-                    color="ims-primary"
-                    rounded="none"
-                    variant="none"
-                    onChange={handleOpsi}
-                    borderLeft="1px solid gray"
-                  >
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </Select>
-                  <Button
-                    align="center"
-                    p="2"
-                    rounded="md"
-                    color="white"
-                    bg="ims-primary"
-                    _hover={{ bg: 'button-hover' }}
-                  >
-                    <Icon as={FiSearch} w={10} h={5} />
-                  </Button>
-                </InputGroup>
-              </Box>
-            </HStack>
-          </HStack>
-          <TableContainer bg="white">
-            <Table {...getTableProps()}>
-              <Thead>
+          <FilterSearchCheckItem />
+          <Box overflowX="auto" bg="white">
+            <Table {...getTableProps()} variant="striped" colorScheme="gray">
+              <Thead bg="gray.200">
                 {headerGroups.map((headerGroup) => (
                   <Tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
                       <Th
-                        border="1px solid black"
                         textAlign="center"
                         {...column.getHeaderProps(
                           column.getSortByToggleProps()
@@ -215,7 +154,7 @@ const ToolsBookPage = () => {
                     <Tr {...row.getRowProps()}>
                       {row.cells.map((cell) => {
                         return (
-                          <Td {...cell.getCellProps()} border="1px solid black">
+                          <Td {...cell.getCellProps()}>
                             {cell.render('Cell')}
                           </Td>
                         );
@@ -225,19 +164,40 @@ const ToolsBookPage = () => {
                 })}
               </Tbody>
             </Table>
-          </TableContainer>
+          </Box>
           {!newDataToolsBook ? (
             <Center>
               <Spinner />
             </Center>
           ) : (
-            <DashboardPagination
-              current={pageIndex + 1}
-              total={pageOptions.length}
-              onPageClick={() => nextPage()}
-            />
+            <HStack>
+              <Text>Show</Text>
+              <Select
+                variant="outline"
+                colorScheme="blue"
+                bg="white"
+                w="max"
+                value={pageSize}
+                onChange={(e) => {
+                  setPageSize(Number(e.target.value));
+                }}
+              >
+                {[10, 20, 30, 40, 50].map((pageSize) => (
+                  <option key={pageSize} value={pageSize}>
+                    {pageSize}
+                  </option>
+                ))}
+              </Select>
+              <Text>Entries</Text>
+              <Spacer />
+              <DashboardPagination
+                current={pageIndex + 1}
+                total={pageOptions.length}
+                onPageClick={() => nextPage()}
+              />
+            </HStack>
           )}
-          <Flex my="10px">
+          {/* <Flex my="10px">
             <Spacer />
             <Box>
               <div className="pagination">
@@ -289,7 +249,7 @@ const ToolsBookPage = () => {
                 </ButtonGroup>
               </HStack>
             </Stack>
-          </Flex>
+          </Flex> */}
         </VStack>
       </>
     );

@@ -36,8 +36,8 @@ const CreateDashboardCheckItems = () => {
       <Button
         rounded="md"
         leftIcon={<Icon as={IoAdd} fontSize="xl" />}
-        px="8px"
-        border="1px"
+        px="4"
+        borderWidth="1px"
         color="ims-primary"
         borderColor="ims-primary"
         onClick={onOpen}
@@ -46,7 +46,7 @@ const CreateDashboardCheckItems = () => {
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent mx={{ base: '2', md: 'none' }}>
           <Box as="form">
             <ModalHeader>
               <HStack>

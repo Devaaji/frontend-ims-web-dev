@@ -36,7 +36,7 @@ const CheckItems = () => {
             <Box
               key={index}
               bg="white"
-              _hover={{ bg: '#E6E6F8', cursor: 'pointer' }}
+              _hover={{ bg: '#F9F9F9', cursor: 'pointer' }}
               p="4"
               shadow="sm"
               align="stretch"

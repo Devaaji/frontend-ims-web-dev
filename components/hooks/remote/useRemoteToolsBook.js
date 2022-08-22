@@ -47,7 +47,7 @@ const useRemoteToolsBook = () => {
       progress: value?.progress,
       // Menambahkan Menu Edit dan Delete
       action: (
-        <Center>
+        <>
           <Menu placement="left">
             <MenuButton
               as={IconButton}
@@ -74,7 +74,7 @@ const useRemoteToolsBook = () => {
           >
             Apakah Kamu Yakin?
           </ModalWarning>
-        </Center>
+        </>
       ),
     });
   });

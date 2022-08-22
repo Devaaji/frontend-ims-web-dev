@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, HStack, IconButton, Stack } from '@chakra-ui/react';
+import { Box, Flex, HStack, IconButton, Spacer, Stack } from '@chakra-ui/react';
 import { FiMenu } from 'react-icons/fi';
 import { useDashboard } from '../../../context/dashboard/DashboardProvider';
 import DashboardUserNavbar from '../DashboardUserNavbar';
@@ -22,12 +22,7 @@ const DashboardNavbar = () => {
         lg: 'row',
       }}
     >
-      <Flex
-        w="full"
-        justifyContent="space-between"
-        alignItems="center"
-        flexDirection="row"
-      >
+      <HStack w="full">
         <Box>
           <IconButton
             icon={<FiMenu />}
@@ -36,10 +31,9 @@ const DashboardNavbar = () => {
             aria-label="Menu"
           />
         </Box>
-        <Box>
-          <DashboardUserNavbar />
-        </Box>
-      </Flex>
+        <Spacer />
+        <DashboardUserNavbar />
+      </HStack>
     </Stack>
   );
 };

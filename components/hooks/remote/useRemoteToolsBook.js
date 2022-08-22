@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import {
+  Badge,
   Center,
   IconButton,
   Menu,
@@ -38,9 +39,11 @@ const useRemoteToolsBook = () => {
       visits: value?.visits,
       status:
         value?.status === 'active' ? (
-          <Text fontWeight="bold" color="green">
-            Active
-          </Text>
+          <Badge colorScheme="green">Active</Badge>
+        ) : value?.status === 'Non active' ? (
+          <Badge colorScheme="red">Non-active</Badge>
+        ) : value?.status === 'In Production' ? (
+          <Badge colorScheme="orange">Production</Badge>
         ) : (
           value?.status
         ),

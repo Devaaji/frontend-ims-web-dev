@@ -15,7 +15,6 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { MdOutlineManageSearch } from 'react-icons/md';
-import { GrDocumentCsv, GrDocumentUpdate } from 'react-icons/gr';
 import { FaFileDownload } from 'react-icons/fa';
 
 const FilterSearchCheckItem = () => {

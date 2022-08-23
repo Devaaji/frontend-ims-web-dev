@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonGroup,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,15 +17,30 @@ const ModalDetailCheckItems = ({ item, isOpen, onClose }) => {
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay bg="blackAlpha.300" />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Detail Check Items</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>Detail Items {item.materialNam}</ModalBody>
+          <ModalBody>{item.materialNam}</ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <ButtonGroup>
+              <Button
+                border="1px"
+                color="ims-primary"
+                borderColor="ims-primary"
+                aria-label="close modal"
+                onClick={onClose}
+              >
+                Batal
+              </Button>
+              <Button
+                type="submit"
+                bg="ims-primary"
+                color="white"
+                _hover={{ bg: 'button-hover' }}
+              >
+                Lihat Lebih Lanjut
+              </Button>
+            </ButtonGroup>
           </ModalFooter>
         </ModalContent>
       </Modal>

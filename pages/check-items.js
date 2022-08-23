@@ -1,27 +1,34 @@
 import React, { useMemo, useState } from 'react';
 
 import {
-  Badge,
   Box,
+  Flex,
   HStack,
   Spacer,
   Stack,
   Text,
+  useDisclosure,
   VStack,
 } from '@chakra-ui/react';
+
 import Head from 'next/head';
 import Select from '../components/core/select';
+
 import { generateEntryOptions } from '../components/core/select/helper/entryOptions';
+
 import DashboardLayout from '../components/dashboard/DashboardLayout';
 import DashboardPagination from '../components/dashboard/DashboardPagination';
 import useRemoteCheckItems from '../components/hooks/remote/useRemoteCheckItems';
 import CreateDashboardCheckItems from '../components/create/CreateDashboardCheckItems';
 import FilterSearchCheckItem from '../components/filter/FilterSearchCheckItem';
+import ModalDetailCheckItems from '../components/Modals/ModalDetailItems';
 
 const CheckItems = () => {
   const [dataLimit, setDataLimit] = useState(5);
   const { data } = useRemoteCheckItems(dataLimit);
   const showEntryOptions = useMemo(() => generateEntryOptions(), []);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -36,147 +43,352 @@ const CheckItems = () => {
             <Box
               key={index}
               bg="white"
+              rounded="md"
               _hover={{ bg: '#F9F9F9', cursor: 'pointer' }}
               p="4"
               shadow="sm"
               align="stretch"
+              onClick={onOpen}
             >
-              <HStack borderWidth="1px" overflowY="auto" p="2">
-                <Box w="full">
-                  <Stack w="max" mr="20px">
-                    <HStack>
-                      <Text fontWeight="semibold">Nomor</Text>
-                      <Text>: {item.nomor}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Nama Barang</Text>
-                      <Text>: {item.namaBarang}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Material Nam</Text>
-                      <Text>: {item.materialNam}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Material Code</Text>
-                      <Text>: {item.materialCode}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Status</Text>
-                      {item.status === 'active' && (
-                        <Badge colorScheme="green">Active</Badge>
-                      )}
-                      {item.status === 'in production' && (
-                        <Badge colorScheme="orange">In-Production</Badge>
-                      )}
-                      {item.status === 'non active' && (
-                        <Badge colorScheme="red">Non-Active</Badge>
-                      )}
-                    </HStack>
-                  </Stack>
-                </Box>
-                <Box w="full">
-                  <Stack w="max" mr="20px">
-                    <HStack>
-                      <Text fontWeight="semibold">Category</Text>
-                      <Text>: {item.kategori}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Minimum Stock</Text>
-                      <Text>: {item.minStock}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Maximum Nam</Text>
-                      <Text>: {item.maxStock}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">In Item</Text>
-                      <Text>: 232</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Out Item</Text>
-                      <Text>: 214</Text>
-                    </HStack>
-                  </Stack>
-                </Box>
-                <Box w="full">
-                  <Stack w="max" mr="20px">
-                    <HStack>
-                      <Text fontWeight="semibold">Nomor :</Text>
+              <ModalDetailCheckItems
+                item={item}
+                isOpen={isOpen}
+                onClose={onClose}
+              />
+              <HStack
+                borderWidth="1px"
+                rounded="md"
+                w="full"
+                align="flex-start"
+                overflow="auto"
+                p="2"
+              >
+                <Box w="max" align="stretch">
+                  <HStack w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold">Nomor</Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
                       <Text>{item.nomor}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Nama Barang :</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Nama Barang
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
                       <Text>{item.namaBarang}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Material Nam :</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Material Nam
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
                       <Text>{item.materialNam}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Material Code :</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Material Code
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
                       <Text>{item.materialCode}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Status :</Text>
-                      {item.status === 'active' && (
-                        <Badge colorScheme="green">Active</Badge>
-                      )}
-                      {item.status === 'in production' && (
-                        <Badge colorScheme="orange">Production</Badge>
-                      )}
-                      {item.status === 'non active' && (
-                        <Badge colorScheme="red">Non-Active</Badge>
-                      )}
-                    </HStack>
-                  </Stack>
-                </Box>
-                <Box w="full">
-                  <Stack w="max" mr="20px">
-                    <HStack>
-                      <Text fontWeight="semibold">Category :</Text>
-                      <Text>{item.kategori}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Minimum Stock :</Text>
-                      <Text>{item.minStock}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Maximum Nam :</Text>
-                      <Text>{item.maxStock}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">In Item :</Text>
-                      <Text>232</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Out Item :</Text>
-                      <Text>214</Text>
-                    </HStack>
-                  </Stack>
-                </Box>
-                <Box w="full">
-                  <Stack w="max" mr="20px">
-                    <HStack>
-                      <Text fontWeight="semibold">Nomor :</Text>
-                      <Text>{item.nomor}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Nama Barang :</Text>
-                      <Text>{item.namaBarang}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Material Nam :</Text>
-                      <Text>{item.materialNam}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Material Code :</Text>
-                      <Text>{item.materialCode}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text fontWeight="semibold">Status :</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Status
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
                       <Text>{item.status}</Text>
-                    </HStack>
-                  </Stack>
+                    </Box>
+                  </HStack>
+                </Box>
+                {/*  5-10 */}
+                <Box w="max" align="stretch">
+                  <HStack w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold">Category</Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.kategori}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Min Stock
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.minStock}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Max Stock
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.maxStock}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          In Item
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>10 Desember 2021</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Out Item
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>14 Jan 2022 </Text>
+                    </Box>
+                  </HStack>
+                </Box>
+                <Box w="max" align="stretch">
+                  <HStack w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold">Nomor</Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.nomor}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Nama Barang
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.namaBarang}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Material Nam
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.materialNam}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Material Code
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.materialCode}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Status
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.status}</Text>
+                    </Box>
+                  </HStack>
+                </Box>
+                {/*  5-10 */}
+                <Box w="max" align="stretch">
+                  <HStack w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold">Category</Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.kategori}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Min Stock
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.minStock}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Max Stock
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.maxStock}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          In Item
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>10 Desember 2021</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Out Item
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>14 Jan 2022 </Text>
+                    </Box>
+                  </HStack>
+                </Box>
+                <Box w="max" align="stretch">
+                  <HStack w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold">Category</Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.kategori}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Min Stock
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.minStock}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Max Stock
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>{item.maxStock}</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          In Item
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>10 Desember 2021</Text>
+                    </Box>
+                  </HStack>
+                  <HStack mt="1" w="full" align="flex-start">
+                    <Box w="150px">
+                      <Flex justify="space-between">
+                        <Text fontWeight="semibold" wordBreak="break-word">
+                          Out Item
+                        </Text>
+                        <Text>:</Text>
+                      </Flex>
+                    </Box>
+                    <Box w="200px" wordBreak="break-word">
+                      <Text>14 Jan 2022 </Text>
+                    </Box>
+                  </HStack>
                 </Box>
               </HStack>
             </Box>

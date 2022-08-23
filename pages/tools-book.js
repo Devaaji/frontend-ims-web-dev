@@ -35,7 +35,7 @@ import {
   CgPushChevronLeft,
   CgPushChevronRight,
 } from 'react-icons/cg';
-import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
+import { FaCaretDown, FaCaretUp, FaSort } from 'react-icons/fa';
 import DashboardPagination from '../components/dashboard/DashboardPagination';
 import FilterSearchCheckItem from '../components/filter/FilterSearchCheckItem';
 
@@ -112,12 +112,13 @@ const ToolsBookPage = () => {
           <CreateDashboardCheckItems />
           <FilterSearchCheckItem />
           <Box overflowX="auto" bg="white">
-            <Table {...getTableProps()} variant="striped" colorScheme="gray">
-              <Thead bg="gray.200">
+            <Table {...getTableProps()} variant="striped" colorScheme="black">
+              <Thead bg="gray.300">
                 {headerGroups.map((headerGroup) => (
                   <Tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
                       <Th
+                        _hover={{ bg: 'gray.400' }}
                         textAlign="center"
                         {...column.getHeaderProps(
                           column.getSortByToggleProps()
@@ -138,7 +139,7 @@ const ToolsBookPage = () => {
                                 <FaCaretUp />
                               )
                             ) : (
-                              ''
+                              <FaSort />
                             )}
                           </Box>
                         </Flex>
@@ -151,7 +152,10 @@ const ToolsBookPage = () => {
                 {page.map((row, i) => {
                   prepareRow(row);
                   return (
-                    <Tr {...row.getRowProps()}>
+                    <Tr
+                      {...row.getRowProps()}
+                      _hover={{ bg: 'gray.100', cursor: 'pointer' }}
+                    >
                       {row.cells.map((cell) => {
                         return (
                           <Td {...cell.getCellProps()}>

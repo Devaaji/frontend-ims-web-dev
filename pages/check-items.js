@@ -44,7 +44,7 @@ const CheckItems = () => {
               key={index}
               bg="white"
               rounded="md"
-              _hover={{ bg: '#F9F9F9', cursor: 'pointer' }}
+              _hover={{ bg: 'ims-button-primary', cursor: 'pointer' }}
               p="4"
               shadow="sm"
               align="stretch"

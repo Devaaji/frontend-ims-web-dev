@@ -44,7 +44,7 @@ const CreateDashboardCheckItems = () => {
       >
         Tambah Items
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent mx={{ base: '2', md: 'none' }}>
           <Box as="form">

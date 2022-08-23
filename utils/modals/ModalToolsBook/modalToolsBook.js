@@ -6,12 +6,14 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  ModalOverlay,
 } from '@chakra-ui/react';
 
 const ModalToolsBooks = ({ id, isOpen, onClose }) => {
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay bg="blackAlpha.100" />
         <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />

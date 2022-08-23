@@ -7,6 +7,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  ModalOverlay,
   Text,
   VStack,
 } from '@chakra-ui/react';
@@ -20,6 +21,7 @@ const ModalWarning = ({ id, isOpen, onClose, buttonText, children }) => {
       onClose={onClose}
       //   closeOnOverlayClick={!isLoading}
     >
+      <ModalOverlay bg="blackAlpha.100" />
       <ModalContent>
         <ModalHeader>
           <VStack>

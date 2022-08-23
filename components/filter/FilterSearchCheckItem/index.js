@@ -11,9 +11,12 @@ import {
   ModalHeader,
   ModalOverlay,
   Spacer,
+  Tooltip,
   useDisclosure,
 } from '@chakra-ui/react';
 import { MdOutlineManageSearch } from 'react-icons/md';
+import { GrDocumentCsv, GrDocumentUpdate } from 'react-icons/gr';
+import { FaFileDownload } from 'react-icons/fa';
 
 const FilterSearchCheckItem = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -31,11 +34,25 @@ const FilterSearchCheckItem = () => {
         Filter Search
       </Button>
       <Spacer />
-      <ButtonGroup color="white">
-        <Button colorScheme="green">CSV</Button>
-        <Button colorScheme="green">XLSX</Button>
+      <ButtonGroup>
+        <Button
+          leftIcon={<Icon as={FaFileDownload} color="white" fontSize="md" />}
+          colorScheme="green"
+        >
+          <Tooltip label="Download CSV" fontSize="sm">
+            CSV
+          </Tooltip>
+        </Button>
+        <Button
+          colorScheme="green"
+          leftIcon={<Icon as={FaFileDownload} fontSize="md" />}
+        >
+          <Tooltip label="Download XLSX" fontSize="sm">
+            XLSX
+          </Tooltip>
+        </Button>
       </ButtonGroup>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent mx={{ base: '2', md: 'none' }}>
           <ModalHeader>FIlter Search</ModalHeader>

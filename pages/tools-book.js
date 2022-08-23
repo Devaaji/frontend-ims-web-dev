@@ -112,7 +112,7 @@ const ToolsBookPage = () => {
           <CreateDashboardCheckItems />
           <FilterSearchCheckItem />
           <Box overflowX="auto" bg="white">
-            <Table {...getTableProps()} variant="striped" colorScheme="black">
+            <Table {...getTableProps()} variant="outline">
               <Thead bg="gray.300">
                 {headerGroups.map((headerGroup) => (
                   <Tr {...headerGroup.getHeaderGroupProps()}>

@@ -54,7 +54,7 @@ const FilterSearchCheckItem = () => {
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent mx={{ base: '2', md: 'none' }}>
-          <ModalHeader>FIlter Search</ModalHeader>
+          <ModalHeader>FIlter Search Check Items</ModalHeader>
           <ModalCloseButton />
           <ModalBody>FIlter Search</ModalBody>
           <ModalFooter>

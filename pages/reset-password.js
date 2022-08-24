@@ -1,10 +1,12 @@
 import React from 'react';
+
 import {
   Box,
   Button,
   Center,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Icon,
@@ -13,15 +15,26 @@ import {
   Text,
   useBoolean,
 } from '@chakra-ui/react';
+
 import { NextSeo } from 'next-seo';
+
 import { FaUserLock, FaEnvelope } from 'react-icons/fa';
+import { resetPasswordSchema } from '../utils/schema/AuthenticationSchema';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 
 const ResetPasswordPage = () => {
   const [succesSendEmail, setSuccessSendEmail] = useBoolean();
 
   const handleClickButton = () => {
-    setSuccessSendEmail.on();
+    setSuccessSendEmail.off();
   };
+
+  const { register, formState, handleSubmit } = useForm({
+    resolver: yupResolver(resetPasswordSchema),
+  });
+
+  const onSubmit = (data) => console.log(data);
 
   if (!succesSendEmail)
     return (
@@ -36,6 +49,7 @@ const ResetPasswordPage = () => {
         >
           <Stack
             as="form"
+            onSubmit={handleSubmit(onSubmit)}
             flexDir="column"
             m="4"
             justifyContent="center"
@@ -67,13 +81,20 @@ const ResetPasswordPage = () => {
                     akan mengirimkan email untuk mereset kata sandi kamu.
                   </Text>
                 </Box>
-                <FormControl id="email">
+                <FormControl
+                  id="email"
+                  isInvalid={!!formState.errors?.email}
+                  errortext={formState.errors?.email?.message}
+                >
                   <FormLabel>Email</FormLabel>
                   <Input
                     type="email"
                     placeholder="Email Terdaftar"
-                    isRequired
+                    {...register('email')}
                   />
+                  <FormErrorMessage fontSize="xs">
+                    {formState.errors?.email?.message}
+                  </FormErrorMessage>
                 </FormControl>
                 <Button
                   type="submit"

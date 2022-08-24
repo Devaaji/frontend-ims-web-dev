@@ -1,10 +1,15 @@
 import React from 'react';
+
+import { NextSeo } from 'next-seo';
+import NextLink from 'next/link';
+
 import {
   Box,
   Button,
   Center,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   IconButton,
@@ -16,17 +21,21 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
-import { NextSeo } from 'next-seo';
-import NextLink from 'next/link';
+
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
+import { loginSchema } from '../utils/schema/AuthenticationSchema';
 import PindadLogo from '../components/core/pindadlogo';
 
 const LoginPage = () => {
   const { isOpen: isPasswordOpen, onToggle: onPasswordToggle } =
     useDisclosure();
 
-  const { register, handleSubmit } = useForm();
+  const { register, formState, handleSubmit } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
 
   const onSubmit = (data) => console.log(data);
 
@@ -68,16 +77,26 @@ const LoginPage = () => {
                   Login
                 </Text>
               </Box>
-              <FormControl id="email">
+              <FormControl
+                id="email"
+                isInvalid={!!formState.errors?.email}
+                errortext={formState.errors?.email?.message}
+              >
                 <FormLabel>Email</FormLabel>
                 <Input
                   type="email"
                   placeholder="Mohon masukkan Email Anda"
-                  isRequired
                   {...register('email')}
                 />
+                <FormErrorMessage fontSize="xs">
+                  {formState.errors?.email?.message}
+                </FormErrorMessage>
               </FormControl>
-              <FormControl id="password">
+              <FormControl
+                id="password"
+                isInvalid={!!formState.errors?.password}
+                errortext={formState.errors?.password?.message}
+              >
                 <Box>
                   <FormLabel>Kata Sandi</FormLabel>
                 </Box>
@@ -85,7 +104,6 @@ const LoginPage = () => {
                   <Input
                     placeholder="Mohon isi kata sandi Anda"
                     type={isPasswordOpen ? 'text' : 'password'}
-                    isRequired
                     {...register('password')}
                   />
                   <InputRightElement>
@@ -108,12 +126,17 @@ const LoginPage = () => {
                     />
                   </InputRightElement>
                 </InputGroup>
+                <FormErrorMessage fontSize="xs">
+                  {formState.errors?.password?.message}
+                </FormErrorMessage>
               </FormControl>
-              <NextLink href="/reset-password" passHref>
-                <Link color="vocasia-main" size="button-bold" textAlign="end">
-                  Lupa Password?
-                </Link>
-              </NextLink>
+              <Box textAlign="end">
+                <NextLink href="/reset-password" passHref>
+                  <Link color="vocasia-main" size="button-bold" textAlign="end">
+                    Lupa Password?
+                  </Link>
+                </NextLink>
+              </Box>
               <Button
                 type="submit"
                 bg="ims-primary"

@@ -5,6 +5,7 @@ import {
   Center,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Icon,
@@ -20,11 +21,20 @@ import {
 import { NextSeo } from 'next-seo';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { FaUserLock } from 'react-icons/fa';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { changePasswordSchema } from '../../utils/schema/AuthenticationSchema';
 
 const ResetPasswordPage = () => {
   const toast = useToast();
   const { isOpen: isPasswordOpen, onToggle: onPasswordToggle } =
     useDisclosure();
+
+  const { register, formState, handleSubmit } = useForm({
+    resolver: yupResolver(changePasswordSchema),
+  });
+
+  const onSubmit = (data) => console.log(data);
 
   const handleClickButton = () => {
     toast({
@@ -49,6 +59,7 @@ const ResetPasswordPage = () => {
         <Stack
           as="form"
           flexDir="column"
+          onSubmit={handleSubmit(onSubmit)}
           m="4"
           justifyContent="center"
           alignItems="center"
@@ -79,7 +90,11 @@ const ResetPasswordPage = () => {
                   password terbaru.
                 </Text>
               </Box>
-              <FormControl id="password">
+              <FormControl
+                id="password"
+                isInvalid={!!formState.errors?.password}
+                errortext={formState.errors?.password?.message}
+              >
                 <Box>
                   <FormLabel>Kata Sandi Baru*</FormLabel>
                 </Box>
@@ -87,7 +102,7 @@ const ResetPasswordPage = () => {
                   <Input
                     placeholder="Mohon isi kata sandi Anda"
                     type={isPasswordOpen ? 'text' : 'password'}
-                    isRequired
+                    {...register('password')}
                   />
                   <InputRightElement>
                     <IconButton
@@ -109,8 +124,15 @@ const ResetPasswordPage = () => {
                     />
                   </InputRightElement>
                 </InputGroup>
+                <FormErrorMessage fontSize="xs">
+                  {formState.errors?.password?.message}
+                </FormErrorMessage>
               </FormControl>
-              <FormControl id="confirm-password">
+              <FormControl
+                id="repassword"
+                isInvalid={!!formState.errors?.repassword}
+                errortext={formState.errors?.repassword?.message}
+              >
                 <Box>
                   <FormLabel>Konfirmasi Kata Sandi Baru*</FormLabel>
                 </Box>
@@ -118,8 +140,9 @@ const ResetPasswordPage = () => {
                   <Input
                     placeholder="Mohon isi kata sandi Anda"
                     type={isPasswordOpen ? 'text' : 'password'}
-                    isRequired
+                    {...register('repassword')}
                   />
+
                   <InputRightElement>
                     <IconButton
                       bg="transparent"
@@ -140,6 +163,9 @@ const ResetPasswordPage = () => {
                     />
                   </InputRightElement>
                 </InputGroup>
+                <FormErrorMessage fontSize="xs">
+                  {formState.errors?.repassword?.message}
+                </FormErrorMessage>
               </FormControl>
               <Button
                 type="submit"
@@ -147,7 +173,6 @@ const ResetPasswordPage = () => {
                 color="white"
                 _hover={{ bg: 'button-hover' }}
                 fontWeight="bold"
-                onClick={handleClickButton}
               >
                 Simpan
               </Button>

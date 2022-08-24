@@ -28,7 +28,6 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import Head from 'next/head';
-import CreateDashboardCheckItems from '../components/create/CreateDashboardCheckItems';
 import {
   CgChevronLeft,
   CgChevronRight,
@@ -37,7 +36,8 @@ import {
 } from 'react-icons/cg';
 import { FaCaretDown, FaCaretUp, FaSort } from 'react-icons/fa';
 import DashboardPagination from '../components/dashboard/DashboardPagination';
-import FilterSearchCheckItem from '../components/filter/FilterSearchCheckItem';
+import FilterSearchToolsBook from '../components/filter/FilterSearchToolsBook';
+import CreateDashboardToolsBook from '../components/create/CreateDashboardToolsBook';
 
 const ToolsBookPage = () => {
   //ini pemanggilan data setelah di fetching
@@ -109,8 +109,8 @@ const ToolsBookPage = () => {
           <Head>
             <title>Tools Book | IMS</title>
           </Head>
-          <CreateDashboardCheckItems />
-          <FilterSearchCheckItem />
+          <CreateDashboardToolsBook />
+          <FilterSearchToolsBook />
           <Box overflowX="auto" bg="white">
             <Table {...getTableProps()} variant="outline">
               <Thead bg="gray.300">

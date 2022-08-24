@@ -18,12 +18,17 @@ import {
 } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
 import NextLink from 'next/link';
+import { useForm } from 'react-hook-form';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import PindadLogo from '../components/core/pindadlogo';
 
 const LoginPage = () => {
   const { isOpen: isPasswordOpen, onToggle: onPasswordToggle } =
     useDisclosure();
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => console.log(data);
 
   return (
     <React.Fragment>
@@ -37,6 +42,7 @@ const LoginPage = () => {
       >
         <Stack
           as="form"
+          onSubmit={handleSubmit(onSubmit)}
           flexDir="column"
           mb="4"
           justifyContent="center"
@@ -68,6 +74,7 @@ const LoginPage = () => {
                   type="email"
                   placeholder="Mohon masukkan Email Anda"
                   isRequired
+                  {...register('email')}
                 />
               </FormControl>
               <FormControl id="password">
@@ -79,6 +86,7 @@ const LoginPage = () => {
                     placeholder="Mohon isi kata sandi Anda"
                     type={isPasswordOpen ? 'text' : 'password'}
                     isRequired
+                    {...register('password')}
                   />
                   <InputRightElement>
                     <IconButton

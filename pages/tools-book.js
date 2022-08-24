@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import DashboardLayout from '../components/dashboard/DashboardLayout';
-import { useSortBy, usePagination, useTable } from 'react-table';
-import useRemoteToolsBook from '../components/hooks/remote/useRemoteToolsBook';
+import Head from 'next/head';
+
 import {
   Box,
   Button,
@@ -27,17 +26,23 @@ import {
   Tr,
   VStack,
 } from '@chakra-ui/react';
-import Head from 'next/head';
-import {
-  CgChevronLeft,
-  CgChevronRight,
-  CgPushChevronLeft,
-  CgPushChevronRight,
-} from 'react-icons/cg';
+
+import { useSortBy, usePagination, useTable } from 'react-table';
+
+import useRemoteToolsBook from '../components/hooks/remote/useRemoteToolsBook';
+
 import { FaCaretDown, FaCaretUp, FaSort } from 'react-icons/fa';
-import DashboardPagination from '../components/dashboard/DashboardPagination';
-import FilterSearchToolsBook from '../components/filter/FilterSearchToolsBook';
 import CreateDashboardToolsBook from '../components/create/CreateDashboardToolsBook';
+import FilterSearchToolsBook from '../components/filter/FilterSearchToolsBook';
+import DashboardPagination from '../components/dashboard/DashboardPagination';
+import DashboardLayout from '../components/dashboard/DashboardLayout';
+
+// import {
+//   CgChevronLeft,
+//   CgChevronRight,
+//   CgPushChevronLeft,
+//   CgPushChevronRight,
+// } from 'react-icons/cg';
 
 const ToolsBookPage = () => {
   //ini pemanggilan data setelah di fetching

@@ -60,12 +60,12 @@ const LineChartDasboard = () => {
   return (
     <>
       <Box
-        my={{ base: '20px' }}
         rounded="md"
+        ml={{ md: '10px', base: '0px' }}
+        mt={{ base: '10px', md: '0px' }}
         shadow="0px 0px 2px 1px rgba(0, 0, 0, 0.25)"
         bg="white"
-        p="30px"
-        h="full"
+        p={{ md: '20px', base: '10px' }}
         w={{ base: 'full', md: '69%' }}
       >
         <Line options={options} data={data} />

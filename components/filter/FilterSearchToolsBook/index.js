@@ -23,7 +23,7 @@ const FilterSearchToolsBook = (data) => {
 
   const DataToDownload = data?.data;
 
-  console.log('ToDownload', DataToDownload);
+  // console.log('ToDownload', DataToDownload);
 
   const { exportFile } = ExportFileXLSX(DataToDownload, 'ToolsBook');
   return (

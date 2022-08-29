@@ -26,7 +26,7 @@ const FilterTesting = ({ newData }) => {
   const data = newData?.data;
 
   const { exportFile } = ExportFileXLSX(data, 'Testing');
-  console.log('FIlter Data', newData);
+  // console.log('FIlter Data', newData);
   return (
     <HStack>
       <Button

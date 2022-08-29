@@ -20,8 +20,6 @@ const DashboardUserNavbar = () => {
 
   const isActiveProfile = pathname === '/profile';
 
-  console.log(isActiveProfile);
-
   const handleLogout = () => {
     router.push('/login');
   };

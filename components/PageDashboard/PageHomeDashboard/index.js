@@ -1,4 +1,4 @@
-import { Flex, HStack } from '@chakra-ui/react';
+import { Box, Flex, HStack } from '@chakra-ui/react';
 import React from 'react';
 import LineChartDasboard from '../../Chart/lineChartDashboard';
 import PieChartDashboard from '../../Chart/pieChartDashboard';
@@ -6,14 +6,14 @@ import PieChartDashboard from '../../Chart/pieChartDashboard';
 const PageHomeDashboard = () => {
   return (
     <>
-      <HStack
+      <Box
+        display="flex"
         flexDir={{ base: 'column', md: 'row' }}
-        justify="space-between"
         align="stretch"
       >
         <PieChartDashboard />
         <LineChartDasboard />
-      </HStack>
+      </Box>
     </>
   );
 };

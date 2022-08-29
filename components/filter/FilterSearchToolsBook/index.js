@@ -16,9 +16,16 @@ import {
 } from '@chakra-ui/react';
 import { MdOutlineManageSearch } from 'react-icons/md';
 import { FaFileDownload } from 'react-icons/fa';
+import ExportFileXLSX from '../../../utils/download/ExportFileXLSX';
 
-const FilterSearchToolsBook = () => {
+const FilterSearchToolsBook = (data) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const DataToDownload = data?.data;
+
+  console.log('ToDownload', DataToDownload);
+
+  const { exportFile } = ExportFileXLSX(DataToDownload, 'ToolsBook');
   return (
     <HStack>
       <Button
@@ -43,6 +50,7 @@ const FilterSearchToolsBook = () => {
           </Tooltip>
         </Button>
         <Button
+          onClick={exportFile}
           colorScheme="green"
           leftIcon={<Icon as={FaFileDownload} fontSize="md" />}
         >

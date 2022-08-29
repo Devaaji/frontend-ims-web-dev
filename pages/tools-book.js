@@ -115,7 +115,7 @@ const ToolsBookPage = () => {
             <title>Tools Book | IMS</title>
           </Head>
           <CreateDashboardToolsBook />
-          <FilterSearchToolsBook />
+          <FilterSearchToolsBook data={newDataToolsBook} />
           <Box overflowX="auto" bg="white">
             <Table {...getTableProps()} variant="outline">
               <Thead bg="gray.300">

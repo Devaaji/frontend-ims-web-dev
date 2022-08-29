@@ -15,7 +15,12 @@ import { FiLogOut, FiUsers } from 'react-icons/fi';
 import { useRouter } from 'next/router';
 
 const DashboardUserNavbar = () => {
+  const { pathname } = useRouter();
   const router = useRouter();
+
+  const isActiveProfile = pathname === '/profile';
+
+  console.log(isActiveProfile);
 
   const handleLogout = () => {
     router.push('/login');
@@ -58,7 +63,13 @@ const DashboardUserNavbar = () => {
               </VStack>
             </HStack>
             <NextLink href="/profile" passHref>
-              <MenuItem as="a" icon={<FiUsers />}>
+              <MenuItem
+                as="a"
+                icon={<FiUsers />}
+                bg={isActiveProfile && 'ims-button-primary'}
+                color={isActiveProfile ? 'ims-primary' : 'black'}
+                _hover={isActiveProfile && { bg: 'ims-hover-primary' }}
+              >
                 Profil Pengguna
               </MenuItem>
             </NextLink>

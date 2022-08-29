@@ -27,6 +27,8 @@ const CheckItems = () => {
 
   const { data } = useRemoteCheckItems(dataLimit);
 
+  console.log('dataLimit', data?.data);
+
   const showEntryOptions = useMemo(() => generateEntryOptions(), []);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -37,7 +39,7 @@ const CheckItems = () => {
           <title>Checks Items | IMS</title>
         </Head>
         <CreateDashboardCheckItems />
-        <FilterSearchCheckItem />
+        <FilterSearchCheckItem data={data?.data} />
         <Stack spacing="5">
           {data?.data.map((item, index) => (
             <Box

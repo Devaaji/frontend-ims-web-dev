@@ -1,6 +1,8 @@
-import { Box, Center, Flex } from '@chakra-ui/react';
+import { Box, Center, Flex, Link } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+
 import { useDashboard } from '../../../context/dashboard/DashboardProvider';
 import PindadLogo from '../../core/pindadlogo';
 import DashboardSidebarItem from '../DashboardSidebarItem';
@@ -27,7 +29,11 @@ const DashboardSidebar = ({ items }) => {
     >
       <Box minW="xs" py="6" overflow="hidden">
         <Center>
-          <PindadLogo multiplySize={1} />
+          <NextLink href="/" passHref>
+            <Link display="inline-block" outline="none">
+              <PindadLogo multiplySize={1} />
+            </Link>
+          </NextLink>
         </Center>
         <Flex as="nav" flexDirection="column" align="stretch" mt="12">
           {items.map((item, index) => (

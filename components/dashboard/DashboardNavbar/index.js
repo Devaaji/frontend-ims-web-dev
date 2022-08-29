@@ -3,6 +3,7 @@ import { Box, Flex, HStack, IconButton, Spacer, Stack } from '@chakra-ui/react';
 import { FiMenu } from 'react-icons/fi';
 import { useDashboard } from '../../../context/dashboard/DashboardProvider';
 import DashboardUserNavbar from '../DashboardUserNavbar';
+import DashboardNotifications from '../DashboardNotifications';
 
 const DashboardNavbar = () => {
   const { isDesktopSidebarOpened, onSidebarToggle } = useDashboard();
@@ -32,7 +33,10 @@ const DashboardNavbar = () => {
           />
         </Box>
         <Spacer />
-        <DashboardUserNavbar />
+        <HStack spacing={3}>
+          <DashboardNotifications />
+          <DashboardUserNavbar />
+        </HStack>
       </HStack>
     </Stack>
   );

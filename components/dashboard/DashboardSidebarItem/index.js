@@ -49,7 +49,8 @@ const DashboardSidebarItem = ({ item, pathname }) => {
                 display="block"
                 p="2"
                 bg={isActive ? 'ims-button-primary' : undefined}
-                color={subItem.path === pathname ? 'ims-secondary' : 'black'}
+                color={subItem.path === pathname ? 'ims-primary' : 'black'}
+                bgColor={subItem.path === pathname && 'ims-hover-primary'}
                 pl="14"
                 transitionProperty="common"
                 transitionDuration="normal"

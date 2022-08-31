@@ -1,4 +1,13 @@
-import { Box } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  HStack,
+  Skeleton,
+  SkeletonCircle,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
@@ -31,17 +40,38 @@ const PieChartDashboard = () => {
       },
     ],
   };
+  const isLoading = false;
   return (
     <>
-      <Box
-        rounded="md"
-        shadow="0px 0px 2px 1px rgba(0, 0, 0, 0.25)"
-        w={{ base: '100%', md: '30%' }}
-        bg="white"
-        py="30px"
-      >
-        <Pie data={data} />
-      </Box>
+      <Flex direction="column" w={{ base: '100%', md: '30%' }}>
+        <Text py="2" color="ims-primary" fontWeight="semibold" fontSize="xl">
+          Gambaran Umum
+        </Text>
+        <Box
+          rounded="md"
+          h="full"
+          shadow="0px 0px 2px 1px rgba(0, 0, 0, 0.25)"
+          w={{ base: '100%', md: 'full' }}
+          bg="white"
+          py="30px"
+        >
+          {isLoading ? (
+            <>
+              <Flex justify="center" align="center" h="full">
+                <Stack>
+                  <HStack>
+                    <SkeletonCircle size={{ base: '150px', md: '350px' }} />
+                  </HStack>
+                </Stack>
+              </Flex>
+            </>
+          ) : (
+            <>
+              <Pie data={data} />
+            </>
+          )}
+        </Box>
+      </Flex>
     </>
   );
 };

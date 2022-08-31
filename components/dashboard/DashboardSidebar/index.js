@@ -21,7 +21,7 @@ const DashboardSidebar = ({ items }) => {
       bg="white"
       minW={isDesktopSidebarOpened ? 'xs' : '0'}
       width={isDesktopSidebarOpened ? 'xs' : '0'}
-      display={{ base: 'none', md: 'block' }}
+      display={{ base: 'none', xl: 'block' }}
       transitionProperty="min-width, width"
       transitionDuration="ultra-slow"
       borderRightWidth={isDesktopSidebarOpened ? '1px' : undefined}

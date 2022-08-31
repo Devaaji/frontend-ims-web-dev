@@ -22,36 +22,61 @@ const Home = () => {
         <Head>
           <title>Dashboard | IMS</title>
         </Head>
-        <HStack borderBottomWidth="1px" pb="6">
-          <Text fontWeight="semibold" color="ims-primary" size="title-medium">
-            Dashboard IMS
-          </Text>
-        </HStack>
         <PageHomeDashboard />
-        <TableContainer>
-          <Table variant="striped" colorScheme="blue">
-            <Thead>
+        <TableContainer overflowX="auto" bg="white">
+          <Table variant="outline">
+            <Thead bg="gray.300">
               <Tr>
-                <Th>To convert</Th>
-                <Th>into</Th>
-                <Th isNumeric>multiply by</Th>
+                <Th _hover={{ bg: 'gray.400' }}>To convert</Th>
+                <Th _hover={{ bg: 'gray.400' }}>into</Th>
+                <Th _hover={{ bg: 'gray.400' }}>multiply by</Th>
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
+              <Tr _hover={{ bg: 'gray.100', cursor: 'pointer' }}>
                 <Td>inches</Td>
                 <Td>millimetres (mm)</Td>
-                <Td isNumeric>25.4</Td>
+                <Td>25.4</Td>
               </Tr>
-              <Tr>
+              <Tr _hover={{ bg: 'gray.100', cursor: 'pointer' }}>
                 <Td>feet</Td>
                 <Td>centimetres (cm)</Td>
-                <Td isNumeric>30.48</Td>
+                <Td>30.48</Td>
               </Tr>
-              <Tr>
+              <Tr _hover={{ bg: 'gray.100', cursor: 'pointer' }}>
                 <Td>yards</Td>
                 <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                <Td>0.91444</Td>
+              </Tr>
+              <Tr _hover={{ bg: 'gray.100', cursor: 'pointer' }}>
+                <Td>yards</Td>
+                <Td>metres (m)</Td>
+                <Td>0.91444</Td>
+              </Tr>
+              <Tr _hover={{ bg: 'gray.100', cursor: 'pointer' }}>
+                <Td>yards</Td>
+                <Td>metres (m)</Td>
+                <Td>0.91444</Td>
+              </Tr>
+              <Tr _hover={{ bg: 'gray.100', cursor: 'pointer' }}>
+                <Td>yards</Td>
+                <Td>metres (m)</Td>
+                <Td>0.91444</Td>
+              </Tr>
+              <Tr _hover={{ bg: 'gray.100', cursor: 'pointer' }}>
+                <Td>yards</Td>
+                <Td>metres (m)</Td>
+                <Td>0.91444</Td>
+              </Tr>
+              <Tr _hover={{ bg: 'gray.100', cursor: 'pointer' }}>
+                <Td>yards</Td>
+                <Td>metres (m)</Td>
+                <Td>0.91444</Td>
+              </Tr>
+              <Tr _hover={{ bg: 'gray.100', cursor: 'pointer' }}>
+                <Td>yards</Td>
+                <Td>metres (m)</Td>
+                <Td>0.91444</Td>
               </Tr>
             </Tbody>
           </Table>

@@ -11,7 +11,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
-import { Box } from '@chakra-ui/react';
+import { Box, Flex, Skeleton, Text } from '@chakra-ui/react';
 
 ChartJS.register(
   CategoryScale,
@@ -55,21 +55,41 @@ export const data = {
     },
   ],
 };
+const isLoading = false;
 
 const LineChartDasboard = () => {
   return (
     <>
-      <Box
-        rounded="md"
-        ml={{ md: '10px', base: '0px' }}
-        mt={{ base: '10px', md: '0px' }}
-        shadow="0px 0px 2px 1px rgba(0, 0, 0, 0.25)"
-        bg="white"
-        p={{ md: '20px', base: '10px' }}
-        w={{ base: 'full', md: '69%' }}
-      >
-        <Line options={options} data={data} />
-      </Box>
+      <Flex h="full" direction="column" w={{ base: '100%', md: '69%' }}>
+        <Text
+          ml={{ md: '10px', base: '0px' }}
+          py="2"
+          color="ims-primary"
+          fontWeight="semibold"
+          fontSize="xl"
+        >
+          Gambaran Perkembangan Data
+        </Text>
+        <Box
+          rounded="md"
+          ml={{ md: '10px', base: '0px' }}
+          mt={{ base: '10px', md: '0px' }}
+          shadow="0px 0px 2px 1px rgba(0, 0, 0, 0.25)"
+          bg="white"
+          p={{ md: '20px', base: '10px' }}
+          w={{ base: 'full', md: 'full' }}
+        >
+          {isLoading ? (
+            <>
+              <Skeleton w="full" h={{ base: '150px', md: 'full' }} />
+            </>
+          ) : (
+            <>
+              <Line options={options} data={data} />
+            </>
+          )}
+        </Box>
+      </Flex>
     </>
   );
 };

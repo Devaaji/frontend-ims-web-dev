@@ -4,6 +4,7 @@ import Head from 'next/head';
 import {
   Box,
   HStack,
+  Skeleton,
   Spacer,
   Stack,
   Text,
@@ -27,6 +28,8 @@ const CheckItems = () => {
 
   const { data } = useRemoteCheckItems(dataLimit);
 
+  const isLoading = false;
+
   // console.log('dataLimit', data?.data);
 
   const showEntryOptions = useMemo(() => generateEntryOptions(), []);
@@ -41,76 +44,102 @@ const CheckItems = () => {
         <CreateDashboardCheckItems />
         <FilterSearchCheckItem data={data?.data} />
         <Stack spacing="5">
-          {data?.data.map((item, index) => (
-            <Box
-              key={index}
-              bg="white"
-              rounded="md"
-              _hover={{ bg: 'ims-button-primary', cursor: 'pointer' }}
-              p="4"
-              shadow="sm"
-              align="stretch"
-              onClick={onOpen}
-            >
-              <ModalDetailCheckItems
-                item={item}
-                isOpen={isOpen}
-                onClose={onClose}
-              />
-              <HStack
-                borderWidth="1px"
-                rounded="md"
-                w="full"
-                align="flex-start"
-                overflow="auto"
-                p="2"
-              >
-                <Box w="max" align="stretch">
-                  <TableToName tableName="Nomor" item={item.nomor} />
-                  <TableToName tableName="Nama Barang" item={item.namaBarang} />
-                  <TableToName
-                    tableName="Material Nam"
-                    item={item.materialNam}
+          {isLoading ? (
+            <>
+              <Stack>
+                <Skeleton w="full" h="100px" rounded="md" />
+                <Skeleton w="full" h="100px" rounded="md" />
+                <Skeleton w="full" h="100px" rounded="md" />
+                <Skeleton w="full" h="100px" rounded="md" />
+                <Skeleton w="full" h="100px" rounded="md" />
+              </Stack>
+            </>
+          ) : (
+            <>
+              {data?.data.map((item, index) => (
+                <Box
+                  key={index}
+                  bg="white"
+                  rounded="md"
+                  _hover={{ bg: 'ims-button-primary', cursor: 'pointer' }}
+                  p="4"
+                  shadow="sm"
+                  align="stretch"
+                  onClick={onOpen}
+                >
+                  <ModalDetailCheckItems
+                    item={item}
+                    isOpen={isOpen}
+                    onClose={onClose}
                   />
-                  <TableToName
-                    tableName="Material Code"
-                    item={item.materialCode}
-                  />
-                  <TableToName tableName="Status" item={item.status} />
+                  <HStack
+                    borderWidth="1px"
+                    rounded="md"
+                    w="full"
+                    align="flex-start"
+                    overflow="auto"
+                    p="2"
+                  >
+                    <Box w="max" align="stretch">
+                      <TableToName tableName="Nomor" item={item.nomor} />
+                      <TableToName
+                        tableName="Nama Barang"
+                        item={item.namaBarang}
+                      />
+                      <TableToName
+                        tableName="Material Nam"
+                        item={item.materialNam}
+                      />
+                      <TableToName
+                        tableName="Material Code"
+                        item={item.materialCode}
+                      />
+                      <TableToName tableName="Status" item={item.status} />
+                    </Box>
+                    {/*  5-10 */}
+                    <Box w="max" align="stretch">
+                      <TableToName tableName="Category" item={item.kategori} />
+                      <TableToName tableName="Min Stock" item={item.minStock} />
+                      <TableToName tableName="Max Stock" item={item.maxStock} />
+                      <TableToName tableName="In Item" item="12 June 2019" />
+                      <TableToName
+                        tableName="Out Item"
+                        item="25 February 2021"
+                      />
+                    </Box>
+                    {/* 10 - 15 */}
+                    <Box w="max" align="stretch">
+                      <TableToName tableName="Nomor" item={item.nomor} />
+                      <TableToName
+                        tableName="Nama Barang"
+                        item={item.namaBarang}
+                      />
+                      <TableToName
+                        tableName="Material Nam"
+                        item={item.materialNam}
+                      />
+                      <TableToName
+                        tableName="Material Code"
+                        item={item.materialCode}
+                      />
+                      <TableToName tableName="Status" item={item.status} />
+                    </Box>
+                    {/* 20 -25 */}
+                    <Box w="max" align="stretch">
+                      <TableToName tableName="Category" item={item.kategori} />
+                      <TableToName tableName="Min Stock" item={item.minStock} />
+                      <TableToName tableName="Max Stock" item={item.maxStock} />
+                      <TableToName tableName="In Item" item="12 June 2019" />
+                      <TableToName
+                        tableName="Out Item"
+                        item="25 February 2021"
+                      />
+                    </Box>
+                  </HStack>
                 </Box>
-                {/*  5-10 */}
-                <Box w="max" align="stretch">
-                  <TableToName tableName="Category" item={item.kategori} />
-                  <TableToName tableName="Min Stock" item={item.minStock} />
-                  <TableToName tableName="Max Stock" item={item.maxStock} />
-                  <TableToName tableName="In Item" item="12 June 2019" />
-                  <TableToName tableName="Out Item" item="25 February 2021" />
-                </Box>
-                {/* 10 - 15 */}
-                <Box w="max" align="stretch">
-                  <TableToName tableName="Nomor" item={item.nomor} />
-                  <TableToName tableName="Nama Barang" item={item.namaBarang} />
-                  <TableToName
-                    tableName="Material Nam"
-                    item={item.materialNam}
-                  />
-                  <TableToName
-                    tableName="Material Code"
-                    item={item.materialCode}
-                  />
-                  <TableToName tableName="Status" item={item.status} />
-                </Box>
-                {/* 20 -25 */}
-                <Box w="max" align="stretch">
-                  <TableToName tableName="Category" item={item.kategori} />
-                  <TableToName tableName="Min Stock" item={item.minStock} />
-                  <TableToName tableName="Max Stock" item={item.maxStock} />
-                  <TableToName tableName="In Item" item="12 June 2019" />
-                  <TableToName tableName="Out Item" item="25 February 2021" />
-                </Box>
-              </HStack>
-            </Box>
-          ))}
+              ))}
+            </>
+          )}
         </Stack>
         <HStack borderTopWidth="1px" py="2">
           <Text>Show</Text>

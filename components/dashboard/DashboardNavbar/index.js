@@ -1,9 +1,18 @@
 import React from 'react';
-import { Box, Flex, HStack, IconButton, Spacer, Stack } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  HStack,
+  IconButton,
+  Spacer,
+  Stack,
+} from '@chakra-ui/react';
 import { FiMenu } from 'react-icons/fi';
 import { useDashboard } from '../../../context/dashboard/DashboardProvider';
 import DashboardUserNavbar from '../DashboardUserNavbar';
 import DashboardNotifications from '../DashboardNotifications';
+import PindadLogo from '../../core/pindadlogo';
 
 const DashboardNavbar = () => {
   const { isDesktopSidebarOpened, onSidebarToggle } = useDashboard();
@@ -24,19 +33,25 @@ const DashboardNavbar = () => {
       }}
     >
       <HStack w="full">
-        <Box>
-          <IconButton
-            icon={<FiMenu />}
-            variant="ghost"
-            onClick={onSidebarToggle}
-            aria-label="Menu"
-          />
-        </Box>
-        <Spacer />
-        <HStack spacing={3}>
-          <DashboardNotifications />
-          <DashboardUserNavbar />
-        </HStack>
+        <Flex w="full">
+          <Flex alignItems="center">
+            <IconButton
+              icon={<FiMenu />}
+              variant="ghost"
+              onClick={onSidebarToggle}
+              aria-label="Menu"
+            />
+          </Flex>
+          <Spacer />
+          <Box display={{ base: 'block', md: 'block', xl: 'none' }}>
+            <PindadLogo multiplySize={0.5} />
+          </Box>
+          <Spacer />
+          <HStack spacing={3}>
+            <DashboardNotifications />
+            <DashboardUserNavbar />
+          </HStack>
+        </Flex>
       </HStack>
     </Stack>
   );

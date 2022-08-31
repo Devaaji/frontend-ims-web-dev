@@ -1,8 +1,12 @@
 import {
+  Box,
   Button,
   ButtonGroup,
+  Flex,
   HStack,
   Icon,
+  Input,
+  InputGroup,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -11,12 +15,16 @@ import {
   ModalHeader,
   ModalOverlay,
   Spacer,
+  Stack,
   Tooltip,
   useDisclosure,
+  VStack,
 } from '@chakra-ui/react';
 import { MdOutlineManageSearch } from 'react-icons/md';
-import { FaFileDownload } from 'react-icons/fa';
+import { FaFileDownload, FaSistrix } from 'react-icons/fa';
+import Select from 'react-select';
 import ExportFileXLSX from '../../../utils/download/ExportFileXLSX';
+import { useState } from 'react';
 
 const FilterSearchToolsBook = (data) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -24,6 +32,13 @@ const FilterSearchToolsBook = (data) => {
   const DataToDownload = data?.data;
 
   // console.log('ToDownload', DataToDownload);
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' },
+  ];
+
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const { exportFile } = ExportFileXLSX(DataToDownload, 'ToolsBook');
   return (
@@ -59,12 +74,62 @@ const FilterSearchToolsBook = (data) => {
           </Tooltip>
         </Button>
       </ButtonGroup>
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal isOpen={isOpen} isCentered size="2xl">
         <ModalOverlay />
         <ModalContent mx={{ base: '2', md: 'none' }}>
           <ModalHeader>FIlter Search Tools Book</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>FIlter Search</ModalBody>
+          <ModalBody>
+            <Stack>
+              <Flex w="full">
+                <Box w="50%" pr="2">
+                  <Input placeholder="custom placeholder" />
+                </Box>
+                <Box w="50%">
+                  <Select
+                    defaultValue={selectedOption}
+                    onChange={setSelectedOption}
+                    options={options}
+                  />
+                </Box>
+              </Flex>
+              <Flex w="full">
+                <Box w="50%" pr="2">
+                  <Input placeholder="custom placeholder" />
+                </Box>
+                <Box w="50%">
+                  <Select
+                    defaultValue={selectedOption}
+                    onChange={setSelectedOption}
+                    options={options}
+                  />
+                </Box>
+              </Flex>
+              <Flex w="full">
+                <Box w="50%" pr="2">
+                  <Input placeholder="custom placeholder" />
+                </Box>
+                <Box w="50%">
+                  <Select
+                    defaultValue={selectedOption}
+                    onChange={setSelectedOption}
+                    options={options}
+                  />
+                </Box>
+              </Flex>
+              <Flex w="full">
+                <Box w="50%" pr="2">
+                  <Input placeholder="custom placeholder" />
+                </Box>
+                <Box w="50%">
+                  <Select
+                    defaultValue={selectedOption}
+                    onChange={setSelectedOption}
+                    options={options}
+                  />
+                </Box>
+              </Flex>
+            </Stack>
+          </ModalBody>
           <ModalFooter>
             <ButtonGroup>
               <Button
@@ -77,6 +142,7 @@ const FilterSearchToolsBook = (data) => {
                 Batal
               </Button>
               <Button
+                leftIcon={<Icon as={FaSistrix} color="white" fontSize="md" />}
                 type="submit"
                 bg="ims-primary"
                 color="white"

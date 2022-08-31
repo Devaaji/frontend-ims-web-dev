@@ -15,7 +15,7 @@ const DashboardProvider = ({ children }) => {
     onToggle: onMobileSidebarOpen,
     onClose: onMobileSidebarClose,
   } = useDisclosure({ defaultIsOpen: false });
-  const isDesktop = useBreakpointValue({ base: false, md: true });
+  const isDesktop = useBreakpointValue({ base: false, md: false, xl: true });
 
   function onToggle() {
     if (isDesktop) return onDesktopSidebarOpen();

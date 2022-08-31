@@ -13,20 +13,12 @@ function generateSidebarItemsAdmin() {
       icon: FiSettings,
       sub: [
         {
+          name: 'Management Menu',
+          path: '/menu-settings',
+        },
+        {
           name: 'Pengaturan Sistem',
           path: '/system-settings',
-        },
-        {
-          name: 'Pengaturan Website',
-          path: '/frontend-settings',
-        },
-        {
-          name: 'Pengaturan Bahasa',
-          path: '/manage-language',
-        },
-        {
-          name: 'Aplikasi Mobile',
-          path: '/mobile-app',
         },
       ],
     },

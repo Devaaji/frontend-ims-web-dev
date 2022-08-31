@@ -45,7 +45,7 @@ const SystemSettings = () => {
     <>
       <VStack align="stretch" py="6" px="4" spacing="6">
         <Head>
-          <title>Checks Items | IMS</title>
+          <title>System Settings | IMS</title>
         </Head>
         <FilterTesting newData={newDataTesting} />
         <Box

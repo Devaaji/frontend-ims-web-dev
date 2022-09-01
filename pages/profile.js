@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Flex,
   FormControl,
   FormLabel,
   HStack,
@@ -25,11 +26,32 @@ const ProfileUserPage = () => {
           Public Profile
         </Text>
         <Spacer />
+        <Button
+          type="submit"
+          bg="ims-primary"
+          color="white"
+          _hover={{ bg: 'button-hover' }}
+          fontWeight="bold"
+        >
+          Update Profile
+        </Button>
       </HStack>
       <HStack>
         <Box rounded="md" bg="white" w={{ base: 'full', md: '460px' }} p="23px">
           <Stack>
-            <FormControl id="name">
+            <HStack mt="1" w="full" align="flex-start">
+              <Box w="150px" border="1px solid black" h="full">
+                <Flex justify="space-between" align="center">
+                  <Text fontWeight="semibold">Nama</Text>
+                  <Text>:</Text>
+                </Flex>
+              </Box>
+              {/* <Box w="200px" wordBreak="break-word">
+                <Text>Deva Aji Saputra</Text>
+              </Box> */}
+              <Input type="text" placeholder="Nama Lengkap" />
+            </HStack>
+            {/* <FormControl id="name">
               <FormLabel>Nama</FormLabel>
               <Input type="text" placeholder="Nama Lengkap" />
             </FormControl>
@@ -60,19 +82,9 @@ const ProfileUserPage = () => {
             <FormControl id="status">
               <FormLabel>Status</FormLabel>
               <Input type="status" placeholder="Status" />
-            </FormControl>
+            </FormControl> */}
           </Stack>
-          <Box mt="20px" w="full" display="flex" justifyContent="end">
-            <Button
-              type="submit"
-              bg="ims-primary"
-              color="white"
-              _hover={{ bg: 'button-hover' }}
-              fontWeight="bold"
-            >
-              Update Profile
-            </Button>
-          </Box>
+          <Box mt="20px" w="full" display="flex" justifyContent="end"></Box>
         </Box>
       </HStack>
     </VStack>

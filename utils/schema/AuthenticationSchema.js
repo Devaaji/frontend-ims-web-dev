@@ -1,9 +1,7 @@
 import * as Yup from 'yup';
 
 export const loginSchema = Yup.object().shape({
-  email: Yup.string()
-    .required('Email harus diisi')
-    .email('Format email tidak sesuai'),
+  username: Yup.string().required('Username harus diisi'),
   password: Yup.string()
     .required('Password Harus diisi')
     .min(6, 'Minimal terdiri dari 6 karakter'),

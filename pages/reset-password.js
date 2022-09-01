@@ -27,7 +27,7 @@ const ResetPasswordPage = () => {
   const [succesSendEmail, setSuccessSendEmail] = useBoolean();
 
   const handleClickButton = () => {
-    setSuccessSendEmail.off();
+    setSuccessSendEmail.on();
   };
 
   const { register, formState, handleSubmit } = useForm({

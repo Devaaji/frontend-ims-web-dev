@@ -45,7 +45,7 @@ const LoginPage = () => {
   const { isOpen: isPasswordOpen, onToggle: onPasswordToggle } =
     useDisclosure();
 
-  const { register, formState, handleSubmit, setError } = useForm({
+  const { register, formState, handleSubmit } = useForm({
     resolver: yupResolver(loginSchema),
   });
 
@@ -57,6 +57,7 @@ const LoginPage = () => {
     { manual: true }
   );
   const setCreateToken = useAuthUserStore((state) => state.setCreateToken);
+  const setId = useAuthUserStore((state) => state.setId);
 
   const updateData = async () => {
     const create = await createToken({
@@ -69,7 +70,6 @@ const LoginPage = () => {
     });
     setCreateToken(create.data.data.token);
   };
-
   const [, makeLogin] = useAxios(
     { url: '/auth/login', method: 'POST' },
     { manual: true }
@@ -77,17 +77,21 @@ const LoginPage = () => {
 
   const onSubmit = async (data) => {
     setIsloading.on();
-    try {
-      updateData();
-      await makeLogin({ data });
-      router.push('/');
-    } catch (error) {
-      setIsloading.off();
-      if (error) {
-        const errorMessage = error.response.data.message;
-        setErrors(errorMessage);
-      } else showToastNetworkError();
-    }
+    updateData();
+
+    makeLogin({ data })
+      .then((response) => {
+        const { data: responseData } = response.data;
+        setId(responseData[0].id);
+        router.push('/');
+      })
+      .catch((error) => {
+        setIsloading.off();
+        if (error) {
+          const errorMessage = error.response.data.message;
+          setErrors(errorMessage);
+        } else showToastNetworkError();
+      });
   };
 
   return (

@@ -13,14 +13,27 @@ import {
 import NextLink from 'next/link';
 import { FiLogOut, FiUsers } from 'react-icons/fi';
 import { useRouter } from 'next/router';
+import useAxios from '../../hooks/useAxios';
+import useAuthUserStore from '../../../store/useAuthUserStore';
 
 const DashboardUserNavbar = () => {
   const { pathname } = useRouter();
+  const isActiveProfile = pathname === '/profile';
   const router = useRouter();
 
-  const isActiveProfile = pathname === '/profile';
+  const removeCookies = useAuthUserStore((state) => state.setLogout);
 
-  const handleLogout = () => {
+  const [, actionLogout] = useAxios(
+    {
+      url: '/auth/logout',
+      method: 'POST',
+    },
+    { manual: true }
+  );
+
+  const handleLogout = async () => {
+    // await removeCookies();
+    // await actionLogout();
     router.push('/login');
   };
   return (

@@ -6,14 +6,27 @@ const useAuthUserStore = create(
   devtools(
     (set) => {
       const cookies = parseCookies();
-      const { _t: accessToken } = cookies;
+      const { id: id, _t: accessToken } = cookies;
 
       return {
+        id,
         accessToken,
+        setId: (newId) => {
+          setCookie(null, '_id', newId, { path: '/' });
+          set({
+            id: newId,
+          });
+        },
         setCreateToken: (newAccessToken) => {
           setCookie(null, '_t', newAccessToken, { path: '/' });
           set({
             accessToken: newAccessToken,
+          });
+        },
+        setLogout: () => {
+          destroyCookie(null, '_t', { path: '/' });
+          set({
+            accessToken: undefined,
           });
         },
       };

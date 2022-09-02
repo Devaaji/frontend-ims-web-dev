@@ -25,9 +25,12 @@ import { FaFileDownload, FaSistrix } from 'react-icons/fa';
 import Select from 'react-select';
 import ExportFileXLSX from '../../../utils/download/ExportFileXLSX';
 import { useState } from 'react';
+import { CSVLink } from 'react-csv';
+import randomString from 'random-string';
 
 const FilterSearchToolsBook = (data) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const randomName = randomString({ length: 20 });
 
   const DataToDownload = data?.data;
 
@@ -56,14 +59,20 @@ const FilterSearchToolsBook = (data) => {
       </Button>
       <Spacer />
       <ButtonGroup>
-        <Button
-          leftIcon={<Icon as={FaFileDownload} color="white" fontSize="md" />}
-          colorScheme="green"
+        <CSVLink
+          data={DataToDownload}
+          filename={`${randomName}_ToolsBook.csv`}
+          target="_blank"
         >
-          <Tooltip label="Download CSV" fontSize="sm">
-            CSV
-          </Tooltip>
-        </Button>
+          <Button
+            leftIcon={<Icon as={FaFileDownload} color="white" fontSize="md" />}
+            colorScheme="green"
+          >
+            <Tooltip label="Download CSV" fontSize="sm">
+              CSV
+            </Tooltip>
+          </Button>
+        </CSVLink>
         <Button
           onClick={exportFile}
           colorScheme="green"

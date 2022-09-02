@@ -17,9 +17,13 @@ import {
 import { MdOutlineManageSearch } from 'react-icons/md';
 import { FaFileDownload } from 'react-icons/fa';
 import ExportFileXLSX from '../../../utils/download/ExportFileXLSX';
+import { CSVLink } from 'react-csv';
+import randomString from 'random-string';
 
 const FilterSearchCheckItem = (data) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const randomName = randomString({ length: 20 });
+
   const DataToDownload = data?.data;
 
   const { exportFile } = ExportFileXLSX(DataToDownload, 'CheckItems');
@@ -39,14 +43,20 @@ const FilterSearchCheckItem = (data) => {
       </Button>
       <Spacer />
       <ButtonGroup>
-        <Button
-          leftIcon={<Icon as={FaFileDownload} color="white" fontSize="md" />}
-          colorScheme="green"
+        <CSVLink
+          data={DataToDownload}
+          filename={`${randomName}_CheckItem.csv`}
+          target="_blank"
         >
-          <Tooltip label="Download CSV" fontSize="sm">
-            CSV
-          </Tooltip>
-        </Button>
+          <Button
+            leftIcon={<Icon as={FaFileDownload} color="white" fontSize="md" />}
+            colorScheme="green"
+          >
+            <Tooltip label="Download CSV" fontSize="sm">
+              CSV
+            </Tooltip>
+          </Button>
+        </CSVLink>
         <Button
           onClick={exportFile}
           colorScheme="green"

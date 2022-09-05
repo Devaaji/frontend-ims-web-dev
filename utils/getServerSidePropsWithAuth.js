@@ -1,10 +1,9 @@
-const dataNotion = null;
+import { destroyCookie, parseCookies } from 'nookies';
 
-export const getServerSidePropsWithNoAuth = async () => {
-  const email = dataNotion;
-  const accessToken = dataNotion;
+export const getServerSidePropsWithNoAuth = async (context) => {
+  const { _t: accessToken, _id: userId } = parseCookies(context, { path: '/' });
 
-  if (email && accessToken) {
+  if (userId && accessToken) {
     return {
       redirect: {
         destination: '/',
@@ -18,11 +17,13 @@ export const getServerSidePropsWithNoAuth = async () => {
   };
 };
 
-export const getServerSidePropsWithAuth = async () => {
-  const email = dataNotion;
-  const accessToken = dataNotion;
+export const getServerSidePropsWithAuth = async (context) => {
+  const { _t: accessToken, _id: userId } = parseCookies(context, { path: '/' });
 
-  if (!email && !accessToken) {
+  if (!userId) {
+    destroyCookie(context, '_t', { path: '/' });
+    destroyCookie(context, '_id', { path: '/' });
+
     return {
       redirect: {
         destination: '/login',
@@ -30,7 +31,17 @@ export const getServerSidePropsWithAuth = async () => {
       },
     };
   }
+  if (!accessToken) {
+    destroyCookie(context, '_t', { path: '/' });
+    destroyCookie(context, '_id', { path: '/' });
 
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
   return {
     props: {},
   };

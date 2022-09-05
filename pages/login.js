@@ -60,7 +60,6 @@ const LoginPage = () => {
     },
     { manual: true }
   );
-
   const [, makeLogin] = useAxios(
     { url: '/auth/login', method: 'POST' },
     { manual: true }
@@ -87,10 +86,9 @@ const LoginPage = () => {
       })
       .catch((error) => {
         setIsloading.off();
-        if (error) {
-          console.log(error);
-          const errorMessage = error.response.data.message;
-          setErrors(errorMessage);
+
+        if (error.response) {
+          setErrors(error.response.data.message);
         } else showToastNetworkError();
       });
   };

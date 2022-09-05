@@ -35,6 +35,7 @@ import useAxios from '../components/hooks/useAxios';
 import useAuthUserStore from '../store/useAuthUserStore';
 import useToastNetworkError from '../components/hooks/useToastNetworkError';
 import PindadLogoWhite from '../components/core/pindadlogowhite';
+import { getServerSidePropsWithNoAuth } from '../utils/getServerSidePropsWithAuth';
 
 const LoginPage = () => {
   const router = useRouter();
@@ -49,6 +50,9 @@ const LoginPage = () => {
     resolver: yupResolver(loginSchema),
   });
 
+  const setCreateToken = useAuthUserStore((state) => state.setCreateToken);
+  const setId = useAuthUserStore((state) => state.setId);
+
   const [, createToken] = useAxios(
     {
       url: '/create-token',
@@ -56,10 +60,14 @@ const LoginPage = () => {
     },
     { manual: true }
   );
-  const setCreateToken = useAuthUserStore((state) => state.setCreateToken);
-  const setId = useAuthUserStore((state) => state.setId);
 
-  const updateData = async () => {
+  const [, makeLogin] = useAxios(
+    { url: '/auth/login', method: 'POST' },
+    { manual: true }
+  );
+
+  const onSubmit = async (data) => {
+    setIsloading.on();
     const create = await createToken({
       data: {
         name: 'ims-services',
@@ -69,25 +77,18 @@ const LoginPage = () => {
       },
     });
     setCreateToken(create.data.data.token);
-  };
-  const [, makeLogin] = useAxios(
-    { url: '/auth/login', method: 'POST' },
-    { manual: true }
-  );
 
-  const onSubmit = async (data) => {
-    setIsloading.on();
-    updateData();
-
-    makeLogin({ data })
+    await makeLogin({ data })
       .then((response) => {
         const { data: responseData } = response.data;
         setId(responseData[0].id);
+        console.log(responseData);
         router.push('/');
       })
       .catch((error) => {
         setIsloading.off();
         if (error) {
+          console.log(error);
           const errorMessage = error.response.data.message;
           setErrors(errorMessage);
         } else showToastNetworkError();
@@ -104,7 +105,7 @@ const LoginPage = () => {
           py="20px"
           px="60px"
           w="50%"
-          bgGradient="linear(to-br, #010080 50%, #D3AF37)"
+          bgGradient="linear(to-br, #010080 60%, #D3AF37)"
           boxShadow={'0px 0px 6px 1px rgba(0, 0, 0, 0.25);'}
         >
           <Flex
@@ -255,5 +256,7 @@ const LoginPage = () => {
     </React.Fragment>
   );
 };
+
+export const getServerSideProps = getServerSidePropsWithNoAuth;
 
 export default LoginPage;

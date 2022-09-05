@@ -14,6 +14,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import PageHomeDashboard from '../components/PageDashboard/PageHomeDashboard';
+import { getServerSidePropsWithAuth } from '../utils/getServerSidePropsWithAuth';
 
 const Home = () => {
   return (
@@ -87,5 +88,7 @@ const Home = () => {
 };
 
 Home.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
+
+export const getServerSideProps = getServerSidePropsWithAuth;
 
 export default Home;

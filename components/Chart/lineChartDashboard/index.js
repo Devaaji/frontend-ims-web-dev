@@ -81,7 +81,7 @@ const LineChartDasboard = () => {
         >
           {isLoading ? (
             <>
-              <Skeleton w="full" h={{ base: '150px', md: 'full' }} />
+              <Skeleton w="full" h={{ base: '150px', md: '200px' }} />
             </>
           ) : (
             <>

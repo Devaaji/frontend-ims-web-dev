@@ -60,7 +60,7 @@ const PieChartDashboard = () => {
               <Flex justify="center" align="center" h="full">
                 <Stack>
                   <HStack>
-                    <SkeletonCircle size={{ base: '150px', md: '350px' }} />
+                    <SkeletonCircle size={{ base: '150px', md: '170px' }} />
                   </HStack>
                 </Stack>
               </Flex>

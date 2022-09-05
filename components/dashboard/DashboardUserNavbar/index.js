@@ -32,8 +32,8 @@ const DashboardUserNavbar = () => {
   );
 
   const handleLogout = async () => {
-    // await removeCookies();
-    // await actionLogout();
+    await actionLogout();
+    await removeCookies();
     router.push('/login');
   };
   return (

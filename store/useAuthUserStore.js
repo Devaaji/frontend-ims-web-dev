@@ -12,7 +12,9 @@ const useAuthUserStore = create(
         id,
         accessToken,
         setId: (newId) => {
-          setCookie(null, '_id', newId, { path: '/' });
+          setCookie(null, '_id', newId, {
+            path: '/',
+          });
           set({
             id: newId,
           });
@@ -24,8 +26,10 @@ const useAuthUserStore = create(
           });
         },
         setLogout: () => {
+          destroyCookie(null, '_id', { path: '/' });
           destroyCookie(null, '_t', { path: '/' });
           set({
+            id: undefined,
             accessToken: undefined,
           });
         },

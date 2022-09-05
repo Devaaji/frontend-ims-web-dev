@@ -37,52 +37,80 @@ const ProfileUserPage = () => {
         </Button>
       </HStack>
       <HStack>
-        <Box rounded="md" bg="white" w={{ base: 'full', md: '460px' }} p="23px">
+        <Box rounded="md" bg="white" w={{ base: 'full', md: '50%' }} p="23px">
           <Stack>
-            <HStack mt="1" w="full" align="flex-start">
-              <Box w="150px" border="1px solid black" h="full">
+            <HStack mt="3" w="full">
+              <Box w="250px" h="full">
                 <Flex justify="space-between" align="center">
-                  <Text fontWeight="semibold">Nama</Text>
+                  <Text fontWeight="semibold">Nama Lengkap</Text>
                   <Text>:</Text>
                 </Flex>
               </Box>
-              {/* <Box w="200px" wordBreak="break-word">
-                <Text>Deva Aji Saputra</Text>
-              </Box> */}
               <Input type="text" placeholder="Nama Lengkap" />
             </HStack>
-            {/* <FormControl id="name">
-              <FormLabel>Nama</FormLabel>
-              <Input type="text" placeholder="Nama Lengkap" />
-            </FormControl>
-            <FormControl id="divisi">
-              <FormLabel>Divisi</FormLabel>
+            <HStack mt="3" w="full">
+              <Box w="250px" h="full">
+                <Flex justify="space-between" align="center">
+                  <Text fontWeight="semibold">Divisi</Text>
+                  <Text>:</Text>
+                </Flex>
+              </Box>
               <Input type="text" placeholder="Divisi" />
-            </FormControl>
-            <FormControl id="jabatan">
-              <FormLabel>Jabatan</FormLabel>
+            </HStack>
+            <HStack mt="3" w="full">
+              <Box w="250px" h="full">
+                <Flex justify="space-between" align="center">
+                  <Text fontWeight="semibold">Jabatan</Text>
+                  <Text>:</Text>
+                </Flex>
+              </Box>
               <Input type="text" placeholder="Jabatan" />
-            </FormControl>
-            <FormControl id="pangkat">
-              <FormLabel>Pangkat</FormLabel>
+            </HStack>
+            <HStack mt="3" w="full">
+              <Box w="250px" h="full">
+                <Flex justify="space-between" align="center">
+                  <Text fontWeight="semibold">Pangkat</Text>
+                  <Text>:</Text>
+                </Flex>
+              </Box>
               <Input type="text" placeholder="Pangkat" />
-            </FormControl>
-            <FormControl id="otoritas">
-              <FormLabel>Otoritas</FormLabel>
+            </HStack>
+            <HStack mt="3" w="full">
+              <Box w="250px" h="full">
+                <Flex justify="space-between" align="center">
+                  <Text fontWeight="semibold">Otoritas</Text>
+                  <Text>:</Text>
+                </Flex>
+              </Box>
               <Input type="text" placeholder="Otoritas" />
-            </FormControl>
-            <FormControl id="username">
-              <FormLabel>Username</FormLabel>
-              <Input type="text" placeholder="Username" />
-            </FormControl>
-            <FormControl id="email">
-              <FormLabel>E-mail</FormLabel>
-              <Input type="email" placeholder="Email Address" />
-            </FormControl>
-            <FormControl id="status">
-              <FormLabel>Status</FormLabel>
-              <Input type="status" placeholder="Status" />
-            </FormControl> */}
+            </HStack>
+            <HStack mt="3" w="full">
+              <Box w="250px" h="full">
+                <Flex justify="space-between" align="center">
+                  <Text fontWeight="semibold">Username</Text>
+                  <Text>:</Text>
+                </Flex>
+              </Box>
+              <Input type="text" placeholder="Otoritas" />
+            </HStack>
+            <HStack mt="3" w="full">
+              <Box w="250px" h="full">
+                <Flex justify="space-between" align="center">
+                  <Text fontWeight="semibold">Email</Text>
+                  <Text>:</Text>
+                </Flex>
+              </Box>
+              <Input type="text" placeholder="Email" />
+            </HStack>
+            <HStack mt="3" w="full">
+              <Box w="250px" h="full">
+                <Flex justify="space-between" align="center">
+                  <Text fontWeight="semibold">Status</Text>
+                  <Text>:</Text>
+                </Flex>
+              </Box>
+              <Input type="text" placeholder="Status" />
+            </HStack>
           </Stack>
           <Box mt="20px" w="full" display="flex" justifyContent="end"></Box>
         </Box>

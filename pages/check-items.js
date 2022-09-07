@@ -37,13 +37,18 @@ const CheckItems = () => {
 
   return (
     <>
-      <VStack align="stretch" py="6" px="4" spacing="6">
+      <VStack
+        align="stretch"
+        py="6"
+        px={{ base: '4', md: '4', lg: '8' }}
+        spacing="6"
+      >
         <Head>
           <title>Checks Items | IMS</title>
         </Head>
         <CreateDashboardCheckItems />
         <FilterSearchCheckItem data={data?.data} />
-        <Stack spacing="5">
+        <Stack spacing="8">
           {isLoading ? (
             <>
               <Stack>
@@ -61,7 +66,12 @@ const CheckItems = () => {
                   key={index}
                   bg="white"
                   rounded="md"
-                  _hover={{ bg: 'ims-button-primary', cursor: 'pointer' }}
+                  transitionDuration="200ms"
+                  _hover={{
+                    bg: '#FDFDFD',
+                    boxShadow: 'md',
+                    cursor: 'pointer',
+                  }}
                   p="4"
                   shadow="sm"
                   align="stretch"
@@ -73,12 +83,11 @@ const CheckItems = () => {
                     onClose={onClose}
                   />
                   <HStack
-                    borderWidth="1px"
                     rounded="md"
                     w="full"
                     align="flex-start"
                     overflow="auto"
-                    p="2"
+                    pb="4"
                   >
                     <Box w="max" align="stretch">
                       <TableToName tableName="Nomor" item={item.nomor} />

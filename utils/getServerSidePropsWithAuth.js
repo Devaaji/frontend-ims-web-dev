@@ -1,3 +1,4 @@
+import { merge } from 'merge';
 import { destroyCookie, parseCookies } from 'nookies';
 
 export const getServerSidePropsWithNoAuth = async (context) => {
@@ -17,32 +18,31 @@ export const getServerSidePropsWithNoAuth = async (context) => {
   };
 };
 
-export const getServerSidePropsWithAuth = async (context) => {
+export const getServerSidePropsWithAuth = async (context, callback) => {
   const { _t: accessToken, _id: userId } = parseCookies(context, { path: '/' });
 
-  if (!userId) {
-    destroyCookie(context, '_t', { path: '/' });
-    destroyCookie(context, '_id', { path: '/' });
-
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
+  if (userId && accessToken) {
+    const returnValue = {
+      props: {
+        fallback: {},
       },
     };
-  }
-  if (!accessToken) {
-    destroyCookie(context, '_t', { path: '/' });
-    destroyCookie(context, '_id', { path: '/' });
+    if (callback) {
+      const callbackValue = await callback({ userId });
+      const returnMergedValue = merge.recursive(returnValue, callbackValue);
 
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    };
+      return returnMergedValue;
+    }
+    return returnValue;
   }
+
+  destroyCookie(context, '_t', { path: '/' });
+  destroyCookie(context, '_id', { path: '/' });
+
   return {
-    props: {},
+    redirect: {
+      destination: '/login',
+      permanent: false,
+    },
   };
 };

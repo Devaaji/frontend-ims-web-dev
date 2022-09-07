@@ -14,15 +14,15 @@ function generateSidebarItemsAdmin() {
       sub: [
         {
           name: 'Transaction Material Stock',
-          path: '/menu-settings',
+          path: '/material-stock',
         },
         {
           name: 'Master Material Batch',
-          path: '/menu-settings',
+          path: '/material-batch',
         },
         {
           name: 'Master Vendor',
-          path: '/menu-settings',
+          path: '/master-vendor',
         },
       ],
     },
@@ -33,19 +33,19 @@ function generateSidebarItemsAdmin() {
       sub: [
         {
           name: 'PO Header',
-          path: '/menu-settings',
+          path: '/po-header',
         },
         {
           name: 'PO Item',
-          path: '/menu-settings',
+          path: '/po-item',
         },
         {
           name: 'PO Component',
-          path: '/menu-settings',
+          path: '/po-component',
         },
         {
           name: 'PO Assignment',
-          path: '/menu-settings',
+          path: '/po-assignment',
         },
       ],
     },

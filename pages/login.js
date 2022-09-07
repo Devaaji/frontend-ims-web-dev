@@ -81,7 +81,6 @@ const LoginPage = () => {
       .then((response) => {
         const { data: responseData } = response.data;
         setId(responseData[0].id);
-        console.log(responseData);
         router.push('/');
       })
       .catch((error) => {
